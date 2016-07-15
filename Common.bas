@@ -2,27 +2,6 @@ Attribute VB_Name = "Common"
 Option Explicit
 
 
-Public Const CELL_NAME_SERVICE_NAME = "SERVICE_NAME"                            ' Oracleサービス名
-Public Const CELL_NAME_CONTRACT_ENTERPRISE_CD = "CONTRACT_ENTERPRISE_CD"        ' 契約企業コード
-Public Const CELL_NAME_SCHOOLHOUSE_NAME = "SCHOOLHOUSE_NAME"                    ' 校舎名
-Public Const CELL_NAME_KOMA_TYPE = "KOMA_TYPE"                                  ' コマ種別
-Public Const CELL_NAME_KOMA_NUM = "KOMA_NUM"                                    ' コマ数
-Public Const CELL_NAME_APPLY_DATE = "APPLY_DATE"                                ' 適用開始日
-Public Const CELL_NAME_HOMEWORK_RESOLUTION_SALON = "HOMEWORK_RESOLUTION_SALON"  ' 宿題解決サロン
-
-Public Const WS_NAME_CONTROL = "操作シート"
-Public Const WS_NAME_EX_DATA = "教室・時間帯"
-Public Const WS_NAME_COURSE_GROUP = "コースグループ"
-Public Const WS_NAME_COURSE_GROUP_SQL = "コースグループ_SQL"
-Public Const WS_NAME_EX_DATA_SQL = "教室・時間帯SQL"
-Public Const WS_NAME_M_SCENE = "M_SCENE"
-Public Const WS_NAME_M_SCENE_SQL = "M_SCENE_SQL"
-Public Const WS_NAME_UPD_T_SCENE_HISTORY = "UPD_T_SCENE_HISTORY"
-
-Public Const SQL_PARAM_SCHOOLHOUSE_NAME = ":schoolhouseName"
-Public Const SQL_PARAM_APPLY_DATE = ":applyDate"
-
-
 ' 共通開始処理
 Public Sub commonStart()
   Application.DisplayAlerts = False ' アラート表示OFF
@@ -46,6 +25,7 @@ Public Sub initializeSheet(ByRef ws As Worksheet)
     .DrawingObjects.Delete  ' 図形・画像を全て削除
     .Cells.ClearContents    ' 値を全て削除
     .Cells.ClearComments    ' コメントを全て削除
+    .Cells.ClearFormats     ' 書式を全て削除
   End With
 End Sub
 
@@ -98,5 +78,4 @@ Public Function createSQL(ByRef sqlWs As Worksheet)
     i = i + 1
   Loop While sqlWs.Cells(i, 1).Value <> ""
 End Function
-
 

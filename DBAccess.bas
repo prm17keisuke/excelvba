@@ -11,6 +11,7 @@ Public Sub s_oraconnect(ByRef cn As Variant, data_source As String, USER_ID As S
     Set cn = CreateObject("ADODB.Connection")
     cn.ConnectionString = "Provider=OraOLEDB.Oracle;Data Source=" & data_source & ";" & "User ID=" & USER_ID & ";Password=" & PASSWORD
     cn.Open
+    cn.CursorLocation = 3 ' クライアントサイドカーソルに変更
   
     On Error GoTo 0
     
