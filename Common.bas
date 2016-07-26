@@ -36,7 +36,7 @@ Public Function setHeader(ByRef ws As Worksheet, ByRef rs As ADODB.Recordset, By
   Dim i As Integer
   
   For i = 1 To rs.Fields.Count
-    With ws.Cells(row, i)
+    With ws.Cells(row, col + i - 1)
       .Interior.Color = RGB(135, 206, 235)
       .Borders.LineStyle = xlContinuous
       .HorizontalAlignment = xlLeft
@@ -47,7 +47,7 @@ Public Function setHeader(ByRef ws As Worksheet, ByRef rs As ADODB.Recordset, By
   Next
   ' フィルタの設定
   With ws
-    .Range(.Cells(row, 1), .Cells(row, i - 1)).AutoFilter
+    .Range(.Cells(row, col), .Cells(row, col + i)).AutoFilter
   End With
   Application.StatusBar = ws.Name & "ヘッダ設定終了"
 End Function
@@ -59,8 +59,8 @@ Public Function setData(ByRef ws As Worksheet, ByRef rs As ADODB.Recordset, ByVa
   ws.Activate
   ws.Cells(row, col).CopyFromRecordset rs
   ws.Cells(row, col).Select
-  ws.Range(Selection, Selection.End(xlToRight)).Select
   ws.Range(Selection, Selection.End(xlDown)).Select
+  ws.Range(Selection, Selection.End(xlToRight)).Select
   Selection.Borders.LineStyle = xlContinuous
   Application.StatusBar = ws.Name & "データ設定終了"
 End Function
